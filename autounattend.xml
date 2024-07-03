@@ -8,17 +8,24 @@
 	<!--Credit to Chris Titus Tech as this file contains Tweaks from The Windows Utility https://github.com/ChrisTitusTech/winutil | https://christitus.com/windows-tool/ | https://www.youtube.com/@ChrisTitusTech/ -->
 	<settings pass="offlineServicing"></settings>
 	<settings pass="windowsPE">
+		<component name="Microsoft-Windows-International-Core-WinPE" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
+			<SetupUILanguage>
+				<UILanguage>en-US</UILanguage>
+			</SetupUILanguage>
+			<InputLocale>0409:00000409</InputLocale>
+			<SystemLocale>en-US</SystemLocale>
+			<UILanguage>en-US</UILanguage>
+			<UserLocale>en-US</UserLocale>
+		</component>
 		<component name="Microsoft-Windows-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
 			<UserData>
 				<ProductKey>
 					<Key>00000-00000-00000-00000-00000</Key>
 					<WillShowUI>Always</WillShowUI>
-					<!-- This ensures the UI will show to select the edition of Windows -->
 				</ProductKey>
 				<AcceptEula>true</AcceptEula>
 			</UserData>
 			<RunSynchronous>
-				<!--Bypass Windows 11 System Requirements-->
 				<RunSynchronousCommand wcm:action="add">
 					<Order>1</Order>
 					<Path>reg.exe add "HKLM\SYSTEM\Setup\LabConfig" /v BypassTPMCheck /t REG_DWORD /d 1 /f</Path>
@@ -128,7 +135,7 @@
 			<FirstLogonCommands></FirstLogonCommands>
 		</component>
 	</settings>
-	<Extensions>
+	<Extensions xmlns="https://schneegans.de/windows/unattend-generator/">
 		<ExtractScript>
 param(
     [xml] $Document
@@ -169,12 +176,12 @@ Where-Object -Property 'DisplayName' -In -Value @(
   'Microsoft.WindowsMaps';
   'Microsoft.ZuneVideo';
   'Microsoft.BingNews';
-  'Microsoft.WindowsNotepad';
+  # 'Microsoft.WindowsNotepad';  # 
   'Microsoft.MicrosoftOfficeHub';
   'Microsoft.Office.OneNote';
   'Microsoft.OutlookForWindows';
-  'Microsoft.Paint';
-  'Microsoft.MSPaint';
+  # 'Microsoft.Paint';  # 
+  # 'Microsoft.MSPaint'; # 
   'Microsoft.People';
   'Microsoft.Windows.Photos';
   'Microsoft.PowerAutomateDesktop';
